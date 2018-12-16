@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title" *ngIf="user.id">Update user</h4>
+  <h4 class="modal-title" *ngIf="!user.id">Add user</h4>
+  <button type="button" class="close" aria-label="Close" (click)="save(false)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <label>
+    First Name
+    <input class="form-control" type="text" [(ngModel)]="user.first_name">
+  </label>
+  <br>
+  <label>
+      Last Name
+      <input class="form-control" type="text" [(ngModel)]="user.last_name">
+    </label>
+    <br>
+    <label>
+        Birth Year
+        <input class="form-control" type="number" [(ngModel)]="user.birth_year" min="0">
+      </label>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="save(false)" >Close</button>
+  <button type="button" class="btn btn-success" (click)="save(true)">Save</button>
+</div>

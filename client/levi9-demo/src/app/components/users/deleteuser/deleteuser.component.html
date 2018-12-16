@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">Delete user</h4>
+    <button type="button" class="close" aria-label="Close" (click)="save(false)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <p style="padding: 10px">
+      Delete user: {{user.first_name}} {{user.last_name}} - {{user.birth_year}}?
+    </p>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="save(false)" >No</button>
+    <button type="button" class="btn btn-warning" (click)="save(true)">Yes</button>
+  </div>

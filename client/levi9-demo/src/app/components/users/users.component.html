@@ -1,0 +1,35 @@
+<h1>Users</h1>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1"><i class="material-icons">search</i></span>
+  </div>
+  <input type="text" name="filterText" [(ngModel)]="filterText" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1"> 
+  <button class="btn btn-outline-secondary" (click)="addUser()"><i class="material-icons">add</i></button>
+</div>
+<br>
+<table class="table table-hover">
+  <thead class="table-dark">
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Birth year</th>
+    <th>
+      <label>
+        Items per page:
+        <input type="number" style="width:70px" min="1" max="999" name="pageSize" [(ngModel)]="pageSize" class="form-control">
+      </label>
+    </th>
+    <th><button class="btn btn-outline-secondary" (click)="getUsers()" ><i class="material-icons">refresh</i></button></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users | filterUsers:filterText | paginate: {'page':page-1, 'pageSize': pageSize}">
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.birth_year}}</td>
+      <td><button class="btn btn-outline-secondary" (click)="updateUser(user)" ><i class="material-icons">create</i></button></td>
+      <td><button class="btn btn-outline-secondary" (click)="deleteUser(user)" ><i class="material-icons">delete_sweep</i></button></td>
+    </tr>
+  </tbody>
+  <tfoot>
+      <ngb-pagination class="d-flex justify-content-center align-middle" [collectionSize]="users.length" [(pageSize)]="pageSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true" (pageChange)="page = $event"></ngb-pagination>
+  </tfoot>
+</table>
